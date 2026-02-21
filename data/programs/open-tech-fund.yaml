@@ -1,0 +1,25 @@
+name: Open Technology Fund (OTF)
+slug: open-technology-fund
+description: A US government-funded program supporting open source projects that advance internet freedom, censorship circumvention, privacy, and secure communications tools — particularly for people in repressive environments.
+category: grant
+tags:
+  - grant
+  - privacy
+  - security
+  - open-source
+  - internet-freedom
+eligibility:
+  type: open
+  regions: global
+  notes: "Open to individuals, teams, and organizations globally. Projects must align with OTF's internet freedom mission."
+stipend:
+  available: true
+  amount_text: "Varies by fund. Core Infrastructure Fund: up to $900,000. Rapid Response Fund: up to $50,000. Fellowships also available."
+  min_usd: 10000
+  max_usd: 900000
+remote: true
+links:
+  official: https://www.opentech.fund
+  apply: https://www.opentech.fund/funds/
+dates: []
+notes: "OTF has several funding tracks: Core Infrastructure Fund (large, long-term projects), Rapid Response Fund (urgent/smaller needs), and Fellowship programs. Best suited for projects focused on tools that help people stay safe online in censored or surveilled environments."

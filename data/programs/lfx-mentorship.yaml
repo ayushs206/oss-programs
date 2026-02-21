@@ -1,0 +1,51 @@
+name: LFX Mentorship (CNCF / Linux Foundation)
+slug: lfx-mentorship
+description: Structured mentorship program run by the Linux Foundation, primarily through CNCF projects. Three terms per year — Spring, Summer, and Fall. Mentees work on cloud-native and open source infrastructure projects.
+category: mentorship
+tags:
+  - stipend
+  - coding
+  - cloud-native
+  - linux
+  - infrastructure
+eligibility:
+  type: open
+  regions: global
+  notes: "Open to anyone who is not a current Linux Foundation employee. No degree required."
+stipend:
+  available: true
+  amount_text: "Varies by region and term. Typically $3,000–$6,600 USD for full-time 3-month terms."
+  min_usd: 3000
+  max_usd: 6600
+remote: true
+links:
+  official: https://mentorship.lfx.linuxfoundation.org
+  apply: https://mentorship.lfx.linuxfoundation.org/participate/mentee
+  docs: https://docs.linuxfoundation.org/lfx/mentorship
+dates:
+  - year: 2025
+    cohort: "Spring Term (March–May 2025)"
+    applications_open: 2025-02-05
+    applications_close: 2025-02-18
+    program_start: 2025-03-03
+    program_end: 2025-05-30
+  - year: 2025
+    cohort: "Summer Term (June–August 2025)"
+    applications_open: 2025-05-14
+    applications_close: 2025-05-27
+    program_start: 2025-06-09
+    program_end: 2025-08-29
+  - year: 2025
+    cohort: "Fall Term (September–November 2025)"
+    applications_open: 2025-07-30
+    applications_close: 2025-08-12
+    program_start: 2025-09-08
+    program_end: 2025-11-28
+  - year: 2026
+    cohort: "Spring Term (March–May 2026)"
+    applications_open: 2026-01-09
+    applications_close: 2026-02-08
+    program_start: 2026-03-02
+    program_end: 2026-05-29
+    notes: "Dates based on RISC-V / LFX 2026 spring schedule — verify on official site."
+notes: "Application windows are only 2 weeks long — don't miss them. Projects are posted on the LFX platform; browse available projects before the window opens to identify what you want to apply to. Part-time 6-month options also available."

@@ -1,0 +1,75 @@
+name: NLnet Foundation Grants (NGI Zero)
+slug: nlnet-ngi-zero
+description: Grants for individuals and organizations building free and open source technologies that contribute to an open, resilient internet. Funded through the EU's Next Generation Internet (NGI) initiative. Covers software, hardware, standards, and research.
+category: grant
+tags:
+  - grant
+  - open-source
+  - privacy
+  - infrastructure
+  - research
+  - no-student-restriction
+eligibility:
+  type: open
+  regions: global
+  notes: "Open to individuals, companies, non-profits, research orgs — anyone. No degree or student status required."
+stipend:
+  available: true
+  amount_text: "€5,000–€50,000 per project (can scale up for proven potential)."
+  min_usd: 5000
+  max_usd: 55000
+remote: true
+links:
+  official: https://nlnet.nl
+  apply: https://nlnet.nl/propose/
+dates:
+  - year: 2025
+    cohort: "April 2025 Call"
+    applications_open: 2025-02-01
+    applications_close: 2025-04-01
+    program_start: 2025-04-01
+    program_end: 2025-06-01
+    notes: "Deadline: April 1, 2025 at noon CEST."
+  - year: 2025
+    cohort: "June 2025 Call"
+    applications_open: 2025-04-01
+    applications_close: 2025-06-01
+    program_start: 2025-06-01
+    program_end: 2025-08-01
+    notes: "Deadline: June 1, 2025 at noon CEST."
+  - year: 2025
+    cohort: "August 2025 Call"
+    applications_open: 2025-06-01
+    applications_close: 2025-08-01
+    program_start: 2025-08-01
+    program_end: 2025-10-01
+    notes: "Deadline: August 1, 2025 at noon CEST."
+  - year: 2025
+    cohort: "October 2025 Call"
+    applications_open: 2025-08-01
+    applications_close: 2025-10-01
+    program_start: 2025-10-01
+    program_end: 2025-12-01
+    notes: "Deadline: October 1, 2025 at noon CEST."
+  - year: 2025
+    cohort: "December 2025 Call"
+    applications_open: 2025-10-01
+    applications_close: 2025-12-01
+    program_start: 2025-12-01
+    program_end: 2026-02-01
+    notes: "Deadline: December 1, 2025 at noon CET."
+  - year: 2026
+    cohort: "February 2026 Call"
+    applications_open: 2025-12-01
+    applications_close: 2026-02-01
+    program_start: 2026-02-01
+    program_end: 2026-04-01
+    notes: "Deadline: February 1, 2026."
+  - year: 2026
+    cohort: "April 2026 Call"
+    applications_open: 2026-02-01
+    applications_close: 2026-04-01
+    program_start: 2026-04-01
+    program_end: 2026-06-01
+    notes: "Deadline: April 1, 2026."
+notes: "NLnet runs back-to-back open calls with a deadline on the 1st of every even month. If you miss one round, the next is just 2 months away. The application form is intentionally short and low-threshold. Funds cover cost-recovery (not commercial rates). Project outputs must be free and open source."

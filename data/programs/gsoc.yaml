@@ -1,0 +1,29 @@
+name: Google Summer of Code
+slug: gsoc
+description: A global program where students and beginner contributors work on open source projects under the guidance of mentors from participating organizations.
+category: mentorship
+tags:
+  - beginner-friendly
+  - stipend
+  - coding
+eligibility:
+  type: students
+  regions: global
+  notes: "Open to students and anyone 18+ who is new to open source. Not limited to enrolled students as of 2022."
+stipend:
+  available: true
+  amount_text: "1,500–3,300 USD (standard size project). Varies by country."
+  min_usd: 1500
+  max_usd: 3300
+remote: true
+links:
+  official: https://summerofcode.withgoogle.com
+  apply: https://summerofcode.withgoogle.com/apply
+dates:
+  - year: 2025
+    applications_open: 2025-03-24
+    applications_close: 2025-04-08
+    program_start: 2025-05-27
+    program_end: 2025-08-25
+    notes: "Contributor proposals due April 8. Organizations announced in late February — start engaging orgs in January."
+notes: "One of the most competitive and well-known open source programs. Start exploring participating organizations and making small contributions in January–February, well before applications open. The proposal is the most important part of your application."

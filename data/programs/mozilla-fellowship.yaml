@@ -1,0 +1,34 @@
+name: Mozilla Fellowship
+slug: mozilla-fellowship
+description: Annual fellowship for experienced technologists, researchers, creators, and advocates working toward a more open, trustworthy internet. Two tracks — Embedded (working with a host civil society org) and Independent (self-directed). Not student-focused; suited for mid-career and senior professionals.
+category: fellowship
+tags:
+  - grant
+  - fellowship
+  - privacy
+  - ai
+  - policy
+  - research
+  - open-source
+eligibility:
+  type: open
+  regions: global
+  notes: "Open to candidates from most countries. Track I (Embedded) fellows must be in Kenya, South Africa, Brazil, MENA, Mexico, UK, US, or EU. Not suited for students — requires demonstrated expertise and track record."
+stipend:
+  available: true
+  amount_text: "$60,000 USD/year stipend + project funding (Track I). Track II varies."
+  min_usd: 60000
+  max_usd: 60000
+remote: false
+links:
+  official: https://www.mozillafoundation.org/en/what-we-do/grantmaking/fellowship/
+  apply: https://www.mozillafoundation.org/en/what-we-do/grantmaking/fellowship/
+dates:
+  - year: 2026
+    cohort: "2026 Fellows"
+    applications_open: 2025-11-01
+    applications_close: 2026-01-30
+    program_start: 2026-06-01
+    program_end: 2027-06-01
+    notes: "Nominations closed Jan 30, 2026. Fellows announced June 2026. Next nominations open early 2027."
+notes: "This is a senior/mid-career fellowship, not suitable for students. Duration is 1–2 years. Nominations open once per year, typically late in the calendar year. Fellows work on projects related to AI accountability, privacy, open infrastructure, climate justice, or creator rights."

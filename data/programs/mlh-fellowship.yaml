@@ -1,0 +1,51 @@
+name: MLH Fellowship
+slug: mlh-fellowship
+description: A 12-week remote fellowship alternative to traditional tech internships. Fellows contribute to real open source projects (or partner company projects) in pods of ~10, under expert mentors. Three tracks available — Open Source, Software Engineering, and Production Engineering (SRE).
+category: fellowship
+tags:
+  - stipend
+  - coding
+  - open-source
+  - sre
+  - beginner-friendly
+eligibility:
+  type: open
+  regions: global
+  notes: "Must be 18+. Open to residents of countries not under US embargo. Not student-exclusive — open to anyone. Rolling admissions."
+stipend:
+  available: true
+  amount_text: "Stipend provided — amount not publicly listed, varies by batch."
+remote: true
+links:
+  official: https://fellowship.mlh.io
+  apply: https://fellowship.mlh.io/programs/open-source
+dates:
+  - year: 2025
+    cohort: "Spring 2025"
+    applications_open: 2024-10-01
+    applications_close: 2025-01-01
+    program_start: 2025-01-13
+    program_end: 2025-04-04
+    notes: "Rolling admissions — apply early, seats fill up."
+  - year: 2025
+    cohort: "Summer 2025"
+    applications_open: 2025-02-01
+    applications_close: 2025-05-01
+    program_start: 2025-05-19
+    program_end: 2025-08-08
+    notes: "Rolling admissions — apply early, seats fill up."
+  - year: 2025
+    cohort: "Fall 2025"
+    applications_open: 2025-06-01
+    applications_close: 2025-08-15
+    program_start: 2025-09-08
+    program_end: 2025-11-28
+    notes: "Rolling admissions — apply early, seats fill up."
+  - year: 2026
+    cohort: "Spring 2026"
+    applications_open: 2025-10-01
+    applications_close: 2026-01-16
+    program_start: 2026-01-26
+    program_end: 2026-04-17
+    notes: "Rolling admissions. Exact dates — verify on official site."
+notes: "Applications are rolling and close a few weeks before each batch starts. Applying early significantly increases your chances — don't wait for the deadline. Three tracks: Open Source (contribute to public OSS), Software Engineering (partner projects), and Production Engineering (SRE/DevOps)."

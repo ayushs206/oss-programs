@@ -1,0 +1,24 @@
+name: Sovereign Tech Fund (STF)
+slug: sovereign-tech-fund
+description: A German government-backed fund supporting the development, improvement, and maintenance of open digital infrastructure. Funds individuals and teams to work on foundational open source software that the internet depends on.
+category: grant
+tags:
+  - grant
+  - infrastructure
+  - open-source
+  - maintenance
+  - security
+eligibility:
+  type: open
+  regions: global
+  notes: "Open globally, though some programs prioritize EU-based applicants. No student requirement."
+stipend:
+  available: true
+  amount_text: "Varies widely by project — can be €50,000–€1,000,000+ for larger engagements. Individual contributor grants also available."
+  min_usd: 10000
+remote: true
+links:
+  official: https://www.sovereigntechfund.de
+  apply: https://www.sovereigntechfund.de/programs/
+dates: []
+notes: "STF funds maintenance and improvement of critical open source infrastructure — think projects like curl, OpenSSL, Python packaging, etc. Less suitable for students; better for experienced maintainers and contributors. Watch their website and social media for open calls."

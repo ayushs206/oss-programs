@@ -1,0 +1,32 @@
+name: Summer of Bitcoin
+slug: summer-of-bitcoin
+description: A global online summer internship program focused on introducing university students to bitcoin open source development and design. Students work with bitcoin open source projects under experienced mentors.
+category: internship
+tags:
+  - stipend
+  - bitcoin
+  - coding
+  - design
+  - students
+  - beginner-friendly
+eligibility:
+  type: students
+  regions: global
+  notes: "Primarily for university students. Must be 18+."
+stipend:
+  available: true
+  amount_text: "$3,000 USD in bitcoin (BTC)"
+  min_usd: 3000
+  max_usd: 3000
+remote: true
+links:
+  official: https://www.summerofbitcoin.org
+  apply: https://www.summerofbitcoin.org/apply
+dates:
+  - year: 2025
+    applications_open: 2025-01-15
+    applications_close: 2025-03-15
+    program_start: 2025-05-01
+    program_end: 2025-08-31
+    notes: "Approximate dates — verify on official site. Applications typically open in Jan/Feb."
+notes: "Stipend is paid in bitcoin. A great program for students interested in bitcoin/open source at the intersection — even if you're not deeply into crypto, the engineering work is legitimate open source software development."

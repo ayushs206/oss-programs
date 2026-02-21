@@ -1,0 +1,30 @@
+name: Hacktoberfest
+slug: hacktoberfest
+description: A month-long celebration of open source every October, organized by DigitalOcean. Participants complete 6 accepted pull/merge requests to earn rewards. Great entry point for first-time open source contributors.
+category: mentorship
+tags:
+  - beginner-friendly
+  - open-source
+  - no-stipend
+  - coding
+  - documentation
+  - design
+eligibility:
+  type: open
+  regions: global
+  notes: "Open to everyone. No experience level requirement."
+stipend:
+  available: false
+  amount_text: "No stipend. Rewards: digital badges (Holopin) + t-shirt and tree planted for first 10,000 completers."
+remote: true
+links:
+  official: https://hacktoberfest.com
+  apply: https://hacktoberfest.com
+dates:
+  - year: 2025
+    applications_open: 2025-09-15
+    applications_close: 2025-10-31
+    program_start: 2025-10-01
+    program_end: 2025-10-31
+    notes: "Register anytime Sep 15–Oct 31. PRs must be submitted and accepted during October. 6 accepted PRs = completion."
+notes: "A fantastic starting point if you've never contributed to open source. Many projects label beginner-friendly issues with 'good-first-issue' or 'hacktoberfest' tags in October. Focus on quality over quantity — spam PRs are rejected."

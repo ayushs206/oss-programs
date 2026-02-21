@@ -1,0 +1,39 @@
+name: Outreachy
+slug: outreachy
+description: Paid remote internships for people subject to systemic bias and underrepresentation in tech. Runs twice a year (May–August and December–March). Open to non-students too.
+category: internship
+tags:
+  - stipend
+  - diversity
+  - coding
+  - documentation
+  - design
+eligibility:
+  type: open
+  regions: global
+  notes: "Open to anyone facing underrepresentation or systemic bias in tech in their country. Special eligibility rules for students — check the site."
+stipend:
+  available: true
+  amount_text: "$7,000 USD total"
+  min_usd: 7000
+  max_usd: 7000
+remote: true
+links:
+  official: https://www.outreachy.org
+  apply: https://www.outreachy.org/apply/
+dates:
+  - year: 2025
+    cohort: "June–August 2025"
+    applications_open: 2025-02-07
+    applications_close: 2025-02-15
+    program_start: 2025-05-29
+    program_end: 2025-08-25
+    notes: "Initial application window is only ~1 week. Contribution period follows for accepted applicants."
+  - year: 2025
+    cohort: "December 2025–March 2026"
+    applications_open: 2025-08-25
+    applications_close: 2025-09-01
+    program_start: 2025-12-01
+    program_end: 2026-03-01
+    notes: "Initial application window is only ~1 week. Apply as soon as it opens — reviewed first-come-first-served."
+notes: "Two cohorts per year. The initial application window is very short (about 1 week) — set a reminder. After initial acceptance, there is a longer contribution period where you work on a project before final selection."
