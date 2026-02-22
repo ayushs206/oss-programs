@@ -14,7 +14,7 @@ export function HeroAnimation() {
 
     return (
         <div className="relative w-full max-w-lg aspect-square flex items-center justify-center">
-            <div className="absolute inset-0 bg-linear-to-tr from-primary/20 to-transparent rounded-full blur-3xl animate-pulse" />
+            <div className="absolute inset-0 bg-linear-to-tr from-black/20 to-transparent rounded-full blur-3xl animate-pulse" />
 
             <svg
                 viewBox="0 0 500 500"
@@ -23,8 +23,8 @@ export function HeroAnimation() {
             >
                 <defs>
                     <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="currentColor" className="text-primary" />
-                        <stop offset="100%" stopColor="currentColor" className="text-blue-500" />
+                        <stop offset="0%" stopColor="currentColor" className="text-black" />
+                        <stop offset="100%" stopColor="currentColor" className="text-black" />
                     </linearGradient>
                     <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
                         <feGaussianBlur stdDeviation="8" result="blur" />
@@ -64,10 +64,10 @@ export function HeroAnimation() {
                 </g>
 
                 <g className="animate-[spin_30s_linear_infinite_reverse]" style={{ transformOrigin: "250px 250px" }}>
-                    <circle cx="250" cy="110" r="6" fill="currentColor" className="text-blue-400" filter="url(#glow)" />
-                    <circle cx="110" cy="250" r="8" fill="currentColor" className="text-blue-400" filter="url(#glow)" />
-                    <circle cx="390" cy="250" r="5" fill="currentColor" className="text-blue-400" filter="url(#glow)" />
-                    <circle cx="250" cy="390" r="7" fill="currentColor" className="text-blue-400" filter="url(#glow)" />
+                    <circle cx="250" cy="110" r="6" fill="currentColor" className="text-black" filter="url(#glow)" />
+                    <circle cx="110" cy="250" r="8" fill="currentColor" className="text-black" filter="url(#glow)" />
+                    <circle cx="390" cy="250" r="5" fill="currentColor" className="text-black" filter="url(#glow)" />
+                    <circle cx="250" cy="390" r="7" fill="currentColor" className="text-black" filter="url(#glow)" />
                 </g>
 
                 {/* Center Hub */}

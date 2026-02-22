@@ -21,8 +21,8 @@ export default function Home() {
             Live Opportunities
           </div>
 
-          <h1 className="text-4xl md:text-7xl font-extrabold tracking-tight text-balance leading-[1.1]">
-            Launch your open source journey.
+          <h1 className="text-5xl md:text-8xl font-display font-medium tracking-tight text-balance border-none leading-[0.95] text-foreground">
+            Launch your <span className="italic font-serif">open source</span> journey.
           </h1>
           <p className="text-lg md:text-2xl text-muted-foreground text-pretty leading-relaxed">
             The curated directory of paid programs, grants, and fellowships. Get compensated while building the future of the open internet.
