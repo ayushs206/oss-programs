@@ -2,7 +2,7 @@ import { getPrograms } from "@/lib/programs";
 import { ProgramList } from "@/components/ProgramList";
 import { Flame, CalendarClock, Globe } from "lucide-react";
 import { HeroAnimation } from "@/components/HeroAnimation";
-
+import { PushSubscribeButton } from "@/components/PushSubscribeButton";
 export default function Home() {
   const programs = getPrograms();
   const openProgramsCount = programs.filter(p => p.status === 'open').length;
@@ -10,6 +10,7 @@ export default function Home() {
 
   return (
     <div className="container max-w-7xl mx-auto px-6 py-16 md:py-32 space-y-24">
+      <PushSubscribeButton />
 
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <section className="space-y-8 max-w-3xl animate-reveal">
