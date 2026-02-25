@@ -44,24 +44,7 @@ export async function registerPush() {
             userVisibleOnly: true,
             applicationServerKey: urlBase64ToUint8Array(vapidKey),
         });
-        console.log('Push subscription established:', subscription);
-
-        console.log('Sending subscription to backend...');
-        const response = await fetch('/api/push/subscribe', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(subscription),
-        });
-
-        if (!response.ok) {
-            console.error('Failed to save subscription on backend. Status:', response.status);
-            return;
-        }
-
-        const data = await response.json();
-        console.log('Backend response:', data);
+        console.log('Push subscription established:', JSON.stringify(subscription));
 
     } catch (err) {
         console.error('Error during push registration:', err);
