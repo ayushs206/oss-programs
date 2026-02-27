@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Header } from "@/components/Header"
 import { Bodoni_Moda, Inter } from "next/font/google"
 import { ThemeProvider } from "next-themes"
-import FloatingThemeToggle from "@/components/FloatingThemeToggle"
+
 import type { Metadata } from "next"
 
 const bodoni = Bodoni_Moda({
@@ -110,11 +110,10 @@ export default function RootLayout({
       <body className="min-h-screen bg-background font-sans antialiased text-foreground">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
-          <FloatingThemeToggle />
 
           <Header />
 
