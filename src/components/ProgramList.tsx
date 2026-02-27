@@ -20,7 +20,7 @@ export function ProgramList({ programs, showControls = true }: ProgramListProps)
   const [compensation, setCompensation] = useState<"all" | "paid" | "unpaid">("all");
   const [eligibility, setEligibility] = useState<"all" | "students" | "professionals">("all");
 
-  const filteredPrograms = useMemo(() => {
+  const baseFilteredPrograms = useMemo(() => {
     let result = programs;
 
     // Work mode filter
@@ -52,23 +52,30 @@ export function ProgramList({ programs, showControls = true }: ProgramListProps)
       });
     }
 
-    // If no search query → sort by status
-    if (!query.trim()) {
-      const statusOrder = { open: 0, opening_soon: 1, upcoming: 2, closed: 3 };
-      return [...result].sort(
-        (a, b) => statusOrder[a.status] - statusOrder[b.status]
-      );
-    }
+    return result;
+  }, [programs, workMode, compensation, eligibility]);
 
-    // Fuse search
-    const fuse = new Fuse(result, {
+  // Decouple Indexing: Re-index only when filters or the underlying data changes, not on every keystroke.
+  const fuseIndex = useMemo(() => {
+    return new Fuse(baseFilteredPrograms, {
       keys: ["name", "description", "category", "tags", "slug"],
       threshold: 0.3,
+      includeMatches: true,
     });
+  }, [baseFilteredPrograms]);
 
-    return fuse.search(query).map((res) => res.item);
+  const searchResults = useMemo(() => {
+    // Agar koi search query nahi hai, toh default order (by status) dikhao
+    if (!query.trim()) {
+      const statusOrder: Record<string, number> = { open: 0, opening_soon: 1, upcoming: 2, closed: 3 };
+      return [...baseFilteredPrograms]
+        .sort((a, b) => (statusOrder[a.status] ?? 99) - (statusOrder[b.status] ?? 99))
+        .map(item => ({ item, matches: undefined }));
+    }
 
-  }, [programs, query, workMode, compensation, eligibility]);
+    // Execute search against the cached index
+    return fuseIndex.search(query);
+  }, [baseFilteredPrograms, fuseIndex, query]);
 
   const handleClear = () => {
     setQuery("");
@@ -135,7 +142,7 @@ export function ProgramList({ programs, showControls = true }: ProgramListProps)
       )}
 
       {/* Empty State */}
-      {filteredPrograms.length === 0 ? (
+      {searchResults.length === 0 ? (
         <div className="py-24 text-center space-y-4 glass rounded-3xl border-dashed">
           <p className="text-xl font-medium text-muted-foreground">
             {showControls && query.trim()
@@ -156,8 +163,8 @@ export function ProgramList({ programs, showControls = true }: ProgramListProps)
         </div>
       ) : (
         <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredPrograms.map((program, index) => (
-            <ProgramCard key={program.slug} program={program} index={index} />
+          {searchResults.map(({ item, matches }, index) => (
+            <ProgramCard key={item.slug} program={item} index={index} matches={matches} />
           ))}
         </div>
       )}

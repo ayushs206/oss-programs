@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { FuseResultMatch } from "fuse.js";
 import { Badge } from "@/components/ui/badge";
 import { ComputedProgram } from "@/lib/programs";
 import { cn } from "@/lib/utils";
@@ -11,9 +12,41 @@ import { BookmarkButton } from "@/components/BookmarkButton";
 interface ProgramCardProps {
     program: ComputedProgram;
     index: number;
+    matches?: readonly FuseResultMatch[];
 }
 
-export function ProgramCard({ program, index }: ProgramCardProps) {
+function HighlightMatch({ text, matches, keyName }: { text: string; matches?: readonly FuseResultMatch[]; keyName: string }) {
+    if (!matches || !text) return <>{text}</>;
+
+    // Extract match only for the specified keyName
+    const match = matches.find(m => m.key === keyName);
+    if (!match || !match.value) return <>{text}</>;
+
+    const indices = match.indices;
+    const parts: React.ReactNode[] = [];
+    let lastIndex = 0;
+
+    indices.forEach(([start, end]) => {
+        if (start > lastIndex) {
+            parts.push(text.slice(lastIndex, start));
+        }
+        // Wrap matched substring in <mark>
+        parts.push(
+            <mark className="bg-primary/20 text-primary font-medium rounded-sm px-0.5" key={`${start}-${end}`}>
+                {text.slice(start, end + 1)}
+            </mark>
+        );
+        lastIndex = end + 1;
+    });
+
+    if (lastIndex < text.length) {
+        parts.push(text.slice(lastIndex));
+    }
+
+    return <>{parts.map((part, i) => <span key={i}>{part}</span>)}</>;
+}
+
+export function ProgramCard({ program, index, matches }: ProgramCardProps) {
     const statusColors = {
         open: "bg-[var(--status-open)] text-[var(--status-open-fg)] border-[var(--status-open-fg)]/20",
         opening_soon: "bg-[var(--status-upcoming)] text-[var(--status-upcoming-fg)] border-[var(--status-upcoming-fg)]/20",
@@ -42,7 +75,7 @@ export function ProgramCard({ program, index }: ProgramCardProps) {
                     <div className="space-y-2">
                         <div className="flex items-center justify-between gap-3">
                             <h3 className="flex-1 font-bold text-lg md:text-xl leading-tight group-hover:text-primary transition-colors text-balance">
-                                {program.name}
+                                <HighlightMatch text={program.name} matches={matches} keyName="name" />
                             </h3>
 
                             <div className="shrink-0 pt-1">
@@ -51,7 +84,7 @@ export function ProgramCard({ program, index }: ProgramCardProps) {
                         </div>
 
                         <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed text-pretty">
-                            {program.description}
+                            <HighlightMatch text={program.description || ""} matches={matches} keyName="description" />
                         </p>
                     </div>
 
