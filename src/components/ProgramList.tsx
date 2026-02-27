@@ -23,7 +23,7 @@ export function ProgramList({ programs, showControls = true }: ProgramListProps)
   const filteredPrograms = useMemo(() => {
     let result = programs;
 
-    // apply filters
+    // Work mode filter
     if (workMode !== "all") {
       result = result.filter((program) =>
         workMode === "remote"
@@ -32,6 +32,7 @@ export function ProgramList({ programs, showControls = true }: ProgramListProps)
       );
     }
 
+    // Compensation filter
     if (compensation !== "all") {
       result = result.filter((program) =>
         compensation === "paid"
@@ -40,6 +41,7 @@ export function ProgramList({ programs, showControls = true }: ProgramListProps)
       );
     }
 
+    // Eligibility filter
     if (eligibility !== "all") {
       result = result.filter((program) => {
         if (program.eligibility.type === "open") return true;
@@ -49,7 +51,8 @@ export function ProgramList({ programs, showControls = true }: ProgramListProps)
           : program.eligibility.type === "professionals";
       });
     }
-    // if no query gives filtered and sorted
+
+    // If no search query → sort by status
     if (!query.trim()) {
       const statusOrder = { open: 0, opening_soon: 1, upcoming: 2, closed: 3 };
       return [...result].sort(
@@ -57,7 +60,7 @@ export function ProgramList({ programs, showControls = true }: ProgramListProps)
       );
     }
 
-    // Fuse search after filtering
+    // Fuse search
     const fuse = new Fuse(result, {
       keys: ["name", "description", "category", "tags", "slug"],
       threshold: 0.3,
@@ -67,8 +70,17 @@ export function ProgramList({ programs, showControls = true }: ProgramListProps)
 
   }, [programs, query, workMode, compensation, eligibility]);
 
+  const handleClear = () => {
+    setQuery("");
+    setWorkMode("all");
+    setCompensation("all");
+    setEligibility("all");
+  };
+
   return (
     <div className="space-y-12">
+
+      {/* Search */}
       {showControls && (
         <div className="relative w-full md:max-w-xl mx-auto md:mx-0 group">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
@@ -82,107 +94,65 @@ export function ProgramList({ programs, showControls = true }: ProgramListProps)
         </div>
       )}
 
+      {/* Filters */}
       {showControls && (
         <div className="space-y-6">
 
-          {/* for workmode*/}
+          {/* Work Mode */}
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-sm font-medium text-muted-foreground">
               Work Mode:
             </span>
 
-            <Button
-              size="sm"
-              variant={workMode === "all" ? "default" : "outline"}
-              onClick={() => setWorkMode("all")}
-            >
-              All
-            </Button>
-
-            <Button
-              size="sm"
-              variant={workMode === "remote" ? "default" : "outline"}
-              onClick={() => setWorkMode("remote")}
-            >
-              Remote
-            </Button>
-
-            <Button
-              size="sm"
-              variant={workMode === "onsite" ? "default" : "outline"}
-              onClick={() => setWorkMode("onsite")}
-            >
-              On-site
-            </Button>
+            <Button size="sm" variant={workMode === "all" ? "default" : "outline"} onClick={() => setWorkMode("all")}>All</Button>
+            <Button size="sm" variant={workMode === "remote" ? "default" : "outline"} onClick={() => setWorkMode("remote")}>Remote</Button>
+            <Button size="sm" variant={workMode === "onsite" ? "default" : "outline"} onClick={() => setWorkMode("onsite")}>On-site</Button>
           </div>
 
-          {/*For compensation*/}
+          {/* Compensation */}
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-sm font-medium text-muted-foreground">
               Compensation:
             </span>
 
-            <Button
-              size="sm"
-              variant={compensation === "all" ? "default" : "outline"}
-              onClick={() => setCompensation("all")}
-            >
-              All
-            </Button>
-
-            <Button
-              size="sm"
-              variant={compensation === "paid" ? "default" : "outline"}
-              onClick={() => setCompensation("paid")}
-            >
-              Paid
-            </Button>
-
-            <Button
-              size="sm"
-              variant={compensation === "unpaid" ? "default" : "outline"}
-              onClick={() => setCompensation("unpaid")}
-            >
-              Unpaid
-            </Button>
+            <Button size="sm" variant={compensation === "all" ? "default" : "outline"} onClick={() => setCompensation("all")}>All</Button>
+            <Button size="sm" variant={compensation === "paid" ? "default" : "outline"} onClick={() => setCompensation("paid")}>Paid</Button>
+            <Button size="sm" variant={compensation === "unpaid" ? "default" : "outline"} onClick={() => setCompensation("unpaid")}>Unpaid</Button>
           </div>
-          {/*For eligibility*/}
+
+          {/* Eligibility */}
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-sm font-medium text-muted-foreground">
               Eligibility:
             </span>
 
-            <Button
-              size="sm"
-              variant={eligibility === "all" ? "default" : "outline"}
-              onClick={() => setEligibility("all")}
-            >
-              All
-            </Button>
-
-            <Button
-              size="sm"
-              variant={eligibility === "students" ? "default" : "outline"}
-              onClick={() => setEligibility("students")}
-            >
-              Students
-            </Button>
-
-            <Button
-              size="sm"
-              variant={eligibility === "professionals" ? "default" : "outline"}
-              onClick={() => setEligibility("professionals")}
-            >
-              Professionals
-            </Button>
+            <Button size="sm" variant={eligibility === "all" ? "default" : "outline"} onClick={() => setEligibility("all")}>All</Button>
+            <Button size="sm" variant={eligibility === "students" ? "default" : "outline"} onClick={() => setEligibility("students")}>Students</Button>
+            <Button size="sm" variant={eligibility === "professionals" ? "default" : "outline"} onClick={() => setEligibility("professionals")}>Professionals</Button>
           </div>
 
         </div>
       )}
+
+      {/* Empty State */}
       {filteredPrograms.length === 0 ? (
         <div className="py-24 text-center space-y-4 glass rounded-3xl border-dashed">
-          <p className="text-xl font-medium text-muted-foreground">No opportunities found matching &quot;{query}&quot;</p>
-          <button onClick={() => setQuery("")} className="text-primary font-semibold hover:underline">Clear search and show all</button>
+          <p className="text-xl font-medium text-muted-foreground">
+            {showControls && query.trim()
+              ? `No opportunities found matching "${query}"`
+              : showControls
+                ? "No opportunities found."
+                : "You haven't bookmarked any opportunities yet."}
+          </p>
+
+          {showControls && (
+            <button
+              onClick={handleClear}
+              className="text-primary font-semibold hover:underline"
+            >
+              Clear filters and show all
+            </button>
+          )}
         </div>
       ) : (
         <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -195,6 +165,3 @@ export function ProgramList({ programs, showControls = true }: ProgramListProps)
     </div>
   );
 }
-
-
-

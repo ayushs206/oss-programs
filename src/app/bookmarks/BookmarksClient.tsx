@@ -30,22 +30,6 @@ export default function BookmarksClient({ programs }: Props) {
       window.removeEventListener("bookmarkUpdated", update);
   }, [programs]);
 
-  const programsWithCTA =
-    filtered.length > 0
-      ? [
-        ...filtered,
-        {
-          slug: "__see_all__",
-          name: "See All Programs",
-          description: "Explore more open source opportunities.",
-          status: "open",
-          category: "",
-          stipend: "",
-          isCTA: true,
-        } as any,
-      ]
-      : filtered;
-
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
       {/* Header */}
