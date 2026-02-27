@@ -1,6 +1,25 @@
 import { Button } from "@/components/ui/button";
+import type { Metadata } from "next";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLinkIcon, GithubIcon, FileCodeIcon, FilePlus } from "lucide-react";
+
+export const metadata: Metadata = {
+    title: "Submit an Open Source Program",
+
+    description:
+        "List your open source program, internship or developer initiative. Submit opportunities and connect with contributors from around the world.",
+
+    openGraph: {
+        title: "Add Your Open Source Opportunity",
+        description:
+            "Submit open source programs and reach developers looking to contribute.",
+        url: "https://oss.owasptiet.com/submit"
+    },
+
+    alternates: {
+        canonical: "/submit"
+    }
+};
 
 export default function SubmitPage() {
     const repoIssuesUrl = "https://github.com/OWASP-STUDENT-CHAPTER/oss-programs/issues/new/choose";

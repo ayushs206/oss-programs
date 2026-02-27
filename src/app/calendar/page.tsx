@@ -4,6 +4,25 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { CalendarDays } from "lucide-react";
 
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+    title: "Open Source Programs Calendar",
+
+    description:
+        "Stay updated with upcoming open source program deadlines, internship timelines, and contribution opportunities. Track application dates for OSS programs.",
+
+    openGraph: {
+        title: "Open Source Contribution Deadlines & Timeline",
+        description:
+            "Browse upcoming open source program deadlines and never miss an opportunity to contribute.",
+        url: "https://oss.owasptiet.com/calendar"
+    },
+
+    alternates: {
+        canonical: "/calendar"
+    }
+};
+
 export default function CalendarPage() {
     const programs = getPrograms();
     const currentYear = new Date().getUTCFullYear();

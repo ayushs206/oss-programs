@@ -10,7 +10,11 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
-import { useState } from "react";
+
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NavItems = ({ setOpen }: { setOpen: (open: boolean) => void }) => (
     <>
@@ -34,9 +38,12 @@ const NavItems = ({ setOpen }: { setOpen: (open: boolean) => void }) => (
 );
 
 export function Header() {
-    const [open, setOpen] = useState(false); return (
+    const [open, setOpen] = useState(false);
+
+    return (
         <header className="sticky top-0 z-50 w-full glass">
             <div className="container flex h-16 items-center px-6 md:px-12 max-w-7xl mx-auto">
+                {/* Logo */}
                 <Link href="/" className="mr-8 flex items-center space-x-2 group">
                     <div className="bg-primary text-primary-foreground rounded-lg p-1.5 transition-transform group-hover:scale-110">
                         <svg
@@ -55,14 +62,20 @@ export function Header() {
                             <path d="m19.07 4.93-14.14 14.14" />
                         </svg>
                     </div>
-                    <span className="font-bold text-xl tracking-tight">OSS Opps</span>
+                    <span className="font-bold text-xl tracking-tight">
+                        OSS Opps
+                    </span>
                 </Link>
 
+                {/* Desktop Nav Links */}
                 <nav className="hidden md:flex items-center space-x-8 text-sm font-medium flex-1">
                     <NavItems setOpen={setOpen} />
                 </nav>
 
+                {/* Desktop Right Side  */}
                 <nav className="hidden md:flex items-center space-x-4">
+                    {/* <ThemeToggle /> */}
+
                     <Link
                         href="/submit"
                         className="flex items-center gap-2 text-sm font-semibold bg-primary/5 hover:bg-primary/10 text-primary px-4 py-2 rounded-full transition-all border border-primary/10"
@@ -70,17 +83,32 @@ export function Header() {
                         <Plus className="w-4 h-4" />
                         Submit Program
                     </Link>
+
+                    <div className="pl-2 md:pl-4 border-l border-neutral-300 dark:border-neutral-600">
+                        <ThemeToggle />
+                    </div>
                 </nav>
 
+                {/* Mobile Menu */}
                 <div className="flex md:hidden flex-1 justify-end">
                     <Sheet open={open} onOpenChange={setOpen}>
                         <SheetTrigger asChild>
-                            <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-10 w-10 rounded-xl"
+                            >
                                 <Menu className="h-6 w-6" />
-                                <span className="sr-only">Toggle menu</span>
+                                <span className="sr-only">
+                                    Toggle menu
+                                </span>
                             </Button>
                         </SheetTrigger>
-                        <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+
+                        <SheetContent
+                            side="right"
+                            className="w-[300px] sm:w-[400px]"
+                        >
                             <SheetHeader className="text-left pb-6 border-b">
                                 <SheetTitle className="flex items-center gap-2">
                                     <div className="bg-primary text-primary-foreground rounded-lg p-1.5">
@@ -103,13 +131,27 @@ export function Header() {
                                     OSS Opps
                                 </SheetTitle>
                             </SheetHeader>
+
                             <nav className="flex flex-col space-y-6 mt-8">
                                 <NavItems setOpen={setOpen} />
+
+                                {/* Mobile Toggle */}
+                                <div className="pt-4 border-t flex items-center justify-between">
+                                    <span className="text-sm font-medium text-muted-foreground">
+                                        Dark Mode
+                                    </span>
+
+                                    <ThemeToggle />
+                                </div>
+
+                                {/* Mobile Submit */}
                                 <div className="pt-4 border-t">
                                     <Link
                                         href="/submit"
                                         className="flex items-center justify-center gap-2 text-sm font-semibold bg-primary text-primary-foreground px-4 py-3 rounded-2xl transition-all shadow-lg shadow-primary/20"
-                                        onClick={() => setOpen(false)}
+                                        onClick={() =>
+                                            setOpen(false)
+                                        }
                                     >
                                         <Plus className="w-4 h-4" />
                                         Submit Program

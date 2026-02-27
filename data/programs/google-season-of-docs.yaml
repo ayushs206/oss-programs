@@ -1,6 +1,6 @@
 name: Google Season of Docs
 slug: google-season-of-docs
-description: A program that brings technical writers together with open source organizations to improve documentation. Organizations receive funding to hire technical writers for a set period.
+description: A program that brought technical writers together with open source organizations to improve documentation. Organizations received funding to hire technical writers for a set period.
 category: mentorship
 tags:
   - stipend
@@ -21,11 +21,11 @@ links:
   official: https://developers.google.com/season-of-docs
   apply: https://developers.google.com/season-of-docs/docs/tech-writer-guide
 dates:
-  - year: 2025
-    cohort: "Season of Docs 2025"
-    applications_open: 2025-04-01
-    applications_close: 2025-05-01
-    program_start: 2025-05-01
-    program_end: 2025-11-15
-    notes: "Approximate dates based on historical pattern — verify on official site when 2025 cycle is announced."
-notes: "Technical writers apply directly to open source organizations (not Google). Browse accepted orgs and their project ideas, then reach out to orgs you're interested in. Writers with technical backgrounds (coding knowledge) are especially competitive."
+  - year: 2024
+    cohort: "Season of Docs 2024 (Final)"
+    applications_open: 2024-02-22
+    applications_close: 2024-04-02
+    program_start: 2024-04-10
+    program_end: 2024-12-10
+    notes: "The Google Season of Docs program concluded permanently after the 2024 cycle."
+notes: "PROGRAM DISCONTINUED. The Google Season of Docs program concluded permanently after the 2024 cycle. This file is retained for archival purposes."

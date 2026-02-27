@@ -108,9 +108,13 @@ export function getPrograms(): ComputedProgram[] {
             
 
             try {
+            
+            try {
+                const fileContents = fs.readFileSync(fullPath, 'utf8');
                 const parsedYaml = yaml.load(fileContents);
                 const program = programSchema.parse(parsedYaml);
                 const { status, currentYearDates } = computeStatus(program.dates);
+                
                 return {
                     ...program,
                     status,
@@ -119,9 +123,34 @@ export function getPrograms(): ComputedProgram[] {
             } catch (e) {
                 console.warn(`Skipping validation file ${fileName}:`, e);
                 return null;
+                // ANSI escape codes for terminal coloring
+                const RESET = '\x1b[0m';
+                const BOLD = '\x1b[1m';
+                const RED = '\x1b[31m';
+                const YELLOW = '\x1b[33m';
+                const GRAY = '\x1b[90m';
+
+                if (e instanceof z.ZodError) {
+                    const zodError = e as z.ZodError<any>;
+                    
+                    const header = `${RED}${BOLD}⨯ Validation failed for ${fileName}${RESET}`;
+                    const border = `${GRAY}----------------------------------------${RESET}`;
+                    
+                    const validationErrors = zodError.issues.map((err: any) => {
+                        const pathString = err.path.join('.');
+                        const formattedPath = pathString ? `${YELLOW}${pathString}${RESET}` : `${GRAY}(root)${RESET}`;
+                        // Add spacing so messages align nicely
+                        return `  ${formattedPath.padEnd(30 + YELLOW.length + RESET.length)} ${err.message}`;
+                    }).join('\n');
+                    
+                    throw new Error(`\n\n${border}\n${header}\n${border}\n${validationErrors}\n${border}\n`);
+                }
+                
+                const header = `${RED}${BOLD}⨯ Failed to parse ${fileName}${RESET}`;
+                const errorMsg = e instanceof Error ? e.message : String(e);
+                throw new Error(`\n\n${header}\n${GRAY}${errorMsg}${RESET}\n`);
             }
-        })
-        .filter((p): p is ComputedProgram => p !== null);
+        });
 
     return allProgramsData;
 }

@@ -1,0 +1,25 @@
+name: GirlScript Summer of Code
+slug: girlscript-summer-of-code
+description: A three-month-long Open Source Program conducted every summer by the GirlScript Foundation. It is a beginner-friendly program perfect for students getting started with open source.
+category: mentorship
+tags:
+  - beginner-friendly
+  - coding
+  - open-source
+eligibility:
+  type: open
+  regions: global
+stipend:
+  available: false
+  amount_text: "Swag, T-shirts, Certificates & Prizes"
+remote: true
+links:
+  official: https://gssoc.girlscript.org
+  apply: https://gssoc.girlscript.org/#apply
+dates:
+  - year: 2026
+    applications_open: 2026-05-01
+    applications_close: 2026-05-20
+    program_start: 2026-06-01
+    program_end: 2026-08-31
+notes: "Dates are estimates for the 2026 cycle based on previous years' schedules. Registrations typically open in May/June; official announcement is expected in Q2 2026."
