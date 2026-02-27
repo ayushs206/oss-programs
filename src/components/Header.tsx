@@ -10,7 +10,11 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
-import { useState } from "react";
+
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NavItems = ({ setOpen }: { setOpen: (open: boolean) => void }) => (
     <>
@@ -79,6 +83,10 @@ export function Header() {
                         <Plus className="w-4 h-4" />
                         Submit Program
                     </Link>
+
+                    <div className="pl-2 md:pl-4 border-l border-neutral-300 dark:border-neutral-600">
+                        <ThemeToggle />
+                    </div>
                 </nav>
 
                 {/* Mobile Menu */}
@@ -128,8 +136,12 @@ export function Header() {
                                 <NavItems setOpen={setOpen} />
 
                                 {/* Mobile Toggle */}
-                                <div className="pt-4 border-t flex justify-center">
-                                    {/* <ThemeToggle /> */}
+                                <div className="pt-4 border-t flex items-center justify-between">
+                                    <span className="text-sm font-medium text-muted-foreground">
+                                        Dark Mode
+                                    </span>
+
+                                    <ThemeToggle />
                                 </div>
 
                                 {/* Mobile Submit */}
