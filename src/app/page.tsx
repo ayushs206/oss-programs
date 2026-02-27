@@ -2,7 +2,7 @@ import { getPrograms } from "@/lib/programs";
 import { ProgramList } from "@/components/ProgramList";
 import { Flame, CalendarClock, Globe } from "lucide-react";
 import { HeroAnimation } from "@/components/HeroAnimation";
-
+import { PushSubscribeButton } from "@/components/PushSubscribeButton";
 export default function Home() {
   const programs = getPrograms();
   const openProgramsCount = programs.filter(p => p.status === 'open').length;
@@ -53,6 +53,8 @@ export default function Home() {
               <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground pt-1">Total Listed</span>
             </div>
           </div>
+
+          <PushSubscribeButton />
         </section>
 
         <div className="hidden md:flex justify-end items-center opacity-0 animate-reveal" style={{ animationDelay: "200ms", animationFillMode: "forwards" }}>
