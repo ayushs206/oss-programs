@@ -10,7 +10,6 @@ export default function Home() {
 
   return (
     <div className="container max-w-7xl mx-auto px-6 py-16 md:py-32 space-y-24">
-      <PushSubscribeButton />
 
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <section className="space-y-8 max-w-3xl animate-reveal">
@@ -54,6 +53,8 @@ export default function Home() {
               <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground pt-1">Total Listed</span>
             </div>
           </div>
+
+          <PushSubscribeButton />
         </section>
 
         <div className="hidden md:flex justify-end items-center opacity-0 animate-reveal" style={{ animationDelay: "200ms", animationFillMode: "forwards" }}>

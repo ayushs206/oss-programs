@@ -5,6 +5,7 @@ import { registerPush } from "@/lib/pushClient";
 
 export function PushSubscribeButton() {
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string>("");
     const [permission, setPermission] = useState<NotificationPermission | "loading">("loading");
 
     useEffect(() => {
@@ -15,17 +16,19 @@ export function PushSubscribeButton() {
         }
     }, []);
 
-    if (permission !== "default") {
+    if (permission === "loading") {
         return null;
     }
 
     const handleSubscribe = async () => {
         setLoading(true);
+        setError("");
 
         try {
             await registerPush();
-        } catch (error) {
-            console.error("Subscription failed:", error);
+        } catch (err) {
+            console.error("Subscription failed:", err);
+            setError("Something went wrong. Please try again.");
         } finally {
             if (typeof window !== "undefined" && "Notification" in window) {
                 setPermission(Notification.permission);
@@ -34,13 +37,41 @@ export function PushSubscribeButton() {
         }
     };
 
+    if (permission === "granted") {
+        return (
+            <div className="pt-2">
+                <p className="text-xs font-medium text-muted-foreground tracking-wide">
+                    ✓ Notifications enabled
+                </p>
+            </div>
+        );
+    }
+
+    if (permission === "denied") {
+        return (
+            <div className="pt-2">
+                <p className="text-xs font-medium text-muted-foreground tracking-wide">
+                    Notifications blocked — enable in browser settings
+                </p>
+            </div>
+        );
+    }
+
     return (
-        <button
-            onClick={handleSubscribe}
-            disabled={loading}
-            className="px-4 py-2 mt-4 bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors"
-        >
-            {loading ? "Enabling..." : "Enable Notifications"}
-        </button>
+        <div className="pt-4 flex flex-col gap-3">
+            <p className="text-sm text-muted-foreground">
+                Get notified when new programs are added.
+            </p>
+            <button
+                onClick={handleSubscribe}
+                disabled={loading}
+                className="w-fit px-5 py-2 text-sm font-medium rounded-full border border-border text-foreground bg-transparent hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none transition-colors duration-200"
+            >
+                {loading ? "Enabling…" : "Enable Notifications"}
+            </button>
+            {error && (
+                <p className="text-xs text-destructive font-medium">{error}</p>
+            )}
+        </div>
     );
 }

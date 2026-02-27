@@ -9,8 +9,8 @@ self.addEventListener('push', function (event) {
 
         const options = {
             body: data.body || '',
-            icon: data.icon || '/icon.svg',
-            badge: '/icon.svg',
+            icon: data.icon || '/favicon.ico',
+            badge: '/favicon.ico',
             data: {
                 url: data.url || '/',
             },
@@ -25,18 +25,21 @@ self.addEventListener('push', function (event) {
 self.addEventListener('notificationclick', function (event) {
     event.notification.close();
 
-    const urlToOpen = event.notification.data.url;
+    const targetUrl = event.notification.data?.url || '/';
 
     event.waitUntil(
         clients.matchAll({ type: 'window', includeUncontrolled: true }).then((windowClients) => {
+            const targetPathname = new URL(targetUrl, self.location.origin).pathname;
+
             for (let i = 0; i < windowClients.length; i++) {
                 const client = windowClients[i];
-                if (client.url === urlToOpen && 'focus' in client) {
+                const clientPathname = new URL(client.url).pathname;
+                if (clientPathname === targetPathname && 'focus' in client) {
                     return client.focus();
                 }
             }
             if (clients.openWindow) {
-                return clients.openWindow(urlToOpen);
+                return clients.openWindow(targetUrl);
             }
         })
     );
