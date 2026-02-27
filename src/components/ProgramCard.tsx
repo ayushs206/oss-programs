@@ -21,6 +21,7 @@ function HighlightMatch({ text, matches, keyName }: { text: string; matches?: re
     // Extract match only for the specified keyName
     const match = matches.find(m => m.key === keyName);
     if (!match || !match.value) return <>{text}</>;
+    if (!match.indices || match.indices.length === 0) return <>{text}</>;
 
     const indices = match.indices;
     const parts: React.ReactNode[] = [];
