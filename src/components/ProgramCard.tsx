@@ -28,6 +28,22 @@ export function ProgramCard({ program, index }: ProgramCardProps) {
         upcoming: Clock,
     }[program.status] || CircleDot;
 
+    if ((program as any).isCTA) {
+        return (
+            <Link
+                href="/programs"
+                className="group rounded-2xl border border-dashed p-6 transition hover:border-foreground/40 hover:bg-muted/30 flex flex-col justify-center"
+            >
+                <h3 className="text-lg font-semibold group-hover:underline">
+                    See All Programs
+                </h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                    Explore more open source opportunities.
+                </p>
+            </Link>
+        );
+    }
+
     return (
         <Link
             href={`/programs/${program.slug}`}

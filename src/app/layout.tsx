@@ -5,6 +5,8 @@ import { Header } from "@/components/Header"
 import { Bodoni_Moda, Inter } from "next/font/google"
 import { ThemeProvider } from "next-themes"
 
+import { FloatingBookmarks } from "@/components/FloatingBookmarks";
+
 import type { Metadata } from "next"
 
 const bodoni = Bodoni_Moda({
@@ -160,6 +162,7 @@ export default function RootLayout({
               </div>
             </div>
           </footer>
+          <FloatingBookmarks />
         </ThemeProvider>
       </body>
     </html>
