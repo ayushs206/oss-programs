@@ -12,24 +12,24 @@ const dateStringSchema = z.preprocess((arg) => {
 }, z.string());
 // added moneyPreprocess
 const moneyPreprocess = (val: unknown) => {
-  if (typeof val === "string") {
-    const cleaned = val.replace(/[$,]/g, "").trim()
-    const num = Number(cleaned)
+    if (typeof val === "string") {
+        const cleaned = val.replace(/[$,]/g, "").trim()
+        const num = Number(cleaned)
 
-    
-    if (isNaN(num)) return undefined
 
-    return num
-  }
+        if (isNaN(num)) return undefined
 
-  return val
+        return num
+    }
+
+    return val
 }
 
 const programSchema = z.object({
-        name: z.string(),
-        slug: z.string(),
-        description: z.string(),
-        category: z.enum(['mentorship', 'grant', 'fellowship', 'hackathon', 'internship']),
+    name: z.string(),
+    slug: z.string(),
+    description: z.string(),
+    category: z.enum(['mentorship', 'grant', 'fellowship', 'hackathon', 'internship']),
     tags: z.array(z.string()),
     eligibility: z.object({
         type: z.enum(['students', 'open', 'professionals']),
@@ -38,8 +38,8 @@ const programSchema = z.object({
     stipend: z.object({
         available: z.boolean(),
         amount_text: z.string().optional(),
-        min_usd: z.preprocess(moneyPreprocess,z.number().nonnegative().optional()),
-        max_usd: z.preprocess(moneyPreprocess,z.number().nonnegative().optional()),
+        min_usd: z.preprocess(moneyPreprocess, z.number().nonnegative().optional()),
+        max_usd: z.preprocess(moneyPreprocess, z.number().nonnegative().optional()),
     }),
     remote: z.boolean(),
     links: z.object({
@@ -104,17 +104,13 @@ export function getPrograms(): ComputedProgram[] {
         .filter((fileName) => fileName.endsWith('.yaml') || fileName.endsWith('.yml'))
         .map((fileName) => {
             const fullPath = path.join(programsDirectory, fileName);
-            const fileContents = fs.readFileSync(fullPath, 'utf8');
-            
 
-            try {
-            
             try {
                 const fileContents = fs.readFileSync(fullPath, 'utf8');
                 const parsedYaml = yaml.load(fileContents);
                 const program = programSchema.parse(parsedYaml);
                 const { status, currentYearDates } = computeStatus(program.dates);
-                
+
                 return {
                     ...program,
                     status,
@@ -122,7 +118,6 @@ export function getPrograms(): ComputedProgram[] {
                 } as ComputedProgram;
             } catch (e) {
                 console.warn(`Skipping validation file ${fileName}:`, e);
-                return null;
                 // ANSI escape codes for terminal coloring
                 const RESET = '\x1b[0m';
                 const BOLD = '\x1b[1m';
@@ -132,25 +127,30 @@ export function getPrograms(): ComputedProgram[] {
 
                 if (e instanceof z.ZodError) {
                     const zodError = e as z.ZodError<any>;
-                    
+
                     const header = `${RED}${BOLD}⨯ Validation failed for ${fileName}${RESET}`;
                     const border = `${GRAY}----------------------------------------${RESET}`;
-                    
-                    const validationErrors = zodError.issues.map((err: any) => {
-                        const pathString = err.path.join('.');
-                        const formattedPath = pathString ? `${YELLOW}${pathString}${RESET}` : `${GRAY}(root)${RESET}`;
-                        // Add spacing so messages align nicely
-                        return `  ${formattedPath.padEnd(30 + YELLOW.length + RESET.length)} ${err.message}`;
-                    }).join('\n');
-                    
+
+                    const validationErrors = zodError.issues
+                        .map((err: any) => {
+                            const pathString = err.path.join('.');
+                            const formattedPath = pathString
+                                ? `${YELLOW}${pathString}${RESET}`
+                                : `${GRAY}(root)${RESET}`;
+
+                            return `  ${formattedPath} ${err.message}`;
+                        })
+                        .join('\n');
+
                     throw new Error(`\n\n${border}\n${header}\n${border}\n${validationErrors}\n${border}\n`);
                 }
-                
+
                 const header = `${RED}${BOLD}⨯ Failed to parse ${fileName}${RESET}`;
                 const errorMsg = e instanceof Error ? e.message : String(e);
                 throw new Error(`\n\n${header}\n${GRAY}${errorMsg}${RESET}\n`);
             }
-        });
+        })
+        .filter(Boolean) as ComputedProgram[];;
 
     return allProgramsData;
 }
