@@ -104,8 +104,9 @@ export function getPrograms(): ComputedProgram[] {
         .filter((fileName) => fileName.endsWith('.yaml') || fileName.endsWith('.yml'))
         .map((fileName) => {
             const fullPath = path.join(programsDirectory, fileName);
-            const fileContents = fs.readFileSync(fullPath, 'utf8');
+
             try {
+                const fileContents = fs.readFileSync(fullPath, 'utf8');
                 const parsedYaml = yaml.load(fileContents);
                 const program = programSchema.parse(parsedYaml);
                 const { status, currentYearDates } = computeStatus(program.dates);
@@ -116,6 +117,7 @@ export function getPrograms(): ComputedProgram[] {
                     currentYearDates
                 } as ComputedProgram;
             } catch (e) {
+                console.warn(`Skipping validation file ${fileName}:`, e);
                 // ANSI escape codes for terminal coloring
                 const RESET = '\x1b[0m';
                 const BOLD = '\x1b[1m';
@@ -129,12 +131,16 @@ export function getPrograms(): ComputedProgram[] {
                     const header = `${RED}${BOLD}⨯ Validation failed for ${fileName}${RESET}`;
                     const border = `${GRAY}----------------------------------------${RESET}`;
 
-                    const validationErrors = zodError.issues.map((err: any) => {
-                        const pathString = err.path.join('.');
-                        const formattedPath = pathString ? `${YELLOW}${pathString}${RESET}` : `${GRAY}(root)${RESET}`;
-                        // Add spacing so messages align nicely
-                        return `  ${formattedPath.padEnd(30 + YELLOW.length + RESET.length)} ${err.message}`;
-                    }).join('\n');
+                    const validationErrors = zodError.issues
+                        .map((err: any) => {
+                            const pathString = err.path.join('.');
+                            const formattedPath = pathString
+                                ? `${YELLOW}${pathString}${RESET}`
+                                : `${GRAY}(root)${RESET}`;
+
+                            return `  ${formattedPath} ${err.message}`;
+                        })
+                        .join('\n');
 
                     throw new Error(`\n\n${border}\n${header}\n${border}\n${validationErrors}\n${border}\n`);
                 }
@@ -143,7 +149,8 @@ export function getPrograms(): ComputedProgram[] {
                 const errorMsg = e instanceof Error ? e.message : String(e);
                 throw new Error(`\n\n${header}\n${GRAY}${errorMsg}${RESET}\n`);
             }
-        });
+        })
+        .filter(Boolean) as ComputedProgram[];;
 
     return allProgramsData;
 }
