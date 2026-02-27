@@ -10,12 +10,26 @@ const dateStringSchema = z.preprocess((arg) => {
     }
     return arg;
 }, z.string());
+// added moneyPreprocess
+const moneyPreprocess = (val: unknown) => {
+  if (typeof val === "string") {
+    const cleaned = val.replace(/[$,]/g, "").trim()
+    const num = Number(cleaned)
+
+    
+    if (isNaN(num)) return undefined
+
+    return num
+  }
+
+  return val
+}
 
 const programSchema = z.object({
-    name: z.string(),
-    slug: z.string(),
-    description: z.string(),
-    category: z.enum(['mentorship', 'grant', 'fellowship', 'hackathon', 'internship']),
+        name: z.string(),
+        slug: z.string(),
+        description: z.string(),
+        category: z.enum(['mentorship', 'grant', 'fellowship', 'hackathon', 'internship']),
     tags: z.array(z.string()),
     eligibility: z.object({
         type: z.enum(['students', 'open', 'professionals']),
@@ -24,8 +38,8 @@ const programSchema = z.object({
     stipend: z.object({
         available: z.boolean(),
         amount_text: z.string().optional(),
-        min_usd: z.number().optional(),
-        max_usd: z.number().optional(),
+        min_usd: z.preprocess(moneyPreprocess,z.number().nonnegative().optional()),
+        max_usd: z.preprocess(moneyPreprocess,z.number().nonnegative().optional()),
     }),
     remote: z.boolean(),
     links: z.object({
@@ -90,6 +104,10 @@ export function getPrograms(): ComputedProgram[] {
         .filter((fileName) => fileName.endsWith('.yaml') || fileName.endsWith('.yml'))
         .map((fileName) => {
             const fullPath = path.join(programsDirectory, fileName);
+            const fileContents = fs.readFileSync(fullPath, 'utf8');
+            
+
+            try {
             
             try {
                 const fileContents = fs.readFileSync(fullPath, 'utf8');
@@ -103,6 +121,8 @@ export function getPrograms(): ComputedProgram[] {
                     currentYearDates
                 } as ComputedProgram;
             } catch (e) {
+                console.warn(`Skipping validation file ${fileName}:`, e);
+                return null;
                 // ANSI escape codes for terminal coloring
                 const RESET = '\x1b[0m';
                 const BOLD = '\x1b[1m';
