@@ -11,6 +11,8 @@ import { cn } from "@/lib/utils";
 
 import { BookmarkButton } from "@/components/BookmarkButton";
 
+const baseUrl = process.env?.NEXT_PUBLIC_SITE_URL || "https://oss.owasptiet.com";
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const program = getProgramBySlug(slug);
@@ -31,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             title: `${program.name} Open Source Program`,
             description:
                 `Explore ${program.name} and kickstart your journey into open source development.`,
-            url: `https://oss.owasptiet.com/programs/${slug}`,
+            url: `${baseUrl}/programs/${slug}`,
             // images: [
             //     {
             //         url: program.logo || "/og.png",

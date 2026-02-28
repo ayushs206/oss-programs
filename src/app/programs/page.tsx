@@ -4,6 +4,8 @@ import { ListChecks } from "lucide-react";
 
 import type { Metadata } from "next";
 
+const baseUrl = process.env?.NEXT_PUBLIC_SITE_URL || "https://oss.owasptiet.com";
+
 export const metadata: Metadata = {
     title: "OSS Opportunities",
     description:
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
         title: "OSS Opportunities",
         description:
             "Explore open source opportunities such as GSoC, MLH Fellowship, Outreachy and more.",
-        url: "https://oss.owasptiet.com/programs",
+        url: `${baseUrl}/programs`,
         siteName: "OSS Opportunities",
         type: "website",
     },
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
     },
 
     alternates: {
-        canonical: "https://oss.owasptiet.com/programs",
+        canonical: `${baseUrl}/programs`,
     },
 };
 

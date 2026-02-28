@@ -4,6 +4,8 @@ import BookmarksClient from "./BookmarksClient";
 
 import type { Metadata } from "next";
 
+const baseUrl = process.env?.NEXT_PUBLIC_SITE_URL || "https://oss.owasptiet.com";
+
 export const metadata: Metadata = {
     title: "Bookmarks | OSS Opportunities",
     description:
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
         title: "Bookmarks | OSS Opportunities",
         description:
             "Access your bookmarked open source programs including grants, fellowships, and internships.",
-        url: "https://oss.owasptiet.com/bookmarks",
+        url: `${baseUrl}/bookmarks`,
         siteName: "OSS Opportunities",
         type: "website",
     },
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
     },
 
     alternates: {
-        canonical: "https://oss.owasptiet.com/bookmarks",
+        canonical: `${baseUrl}/bookmarks`,
     },
 };
 

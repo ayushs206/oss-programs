@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { CalendarDays } from "lucide-react";
 
+const baseUrl = process.env?.NEXT_PUBLIC_SITE_URL || "https://oss.owasptiet.com";
+
 import type { Metadata } from "next";
 export const metadata: Metadata = {
     title: "Open Source Programs Calendar",
@@ -15,7 +17,7 @@ export const metadata: Metadata = {
         title: "Open Source Contribution Deadlines & Timeline",
         description:
             "Browse upcoming open source program deadlines and never miss an opportunity to contribute.",
-        url: "https://oss.owasptiet.com/calendar"
+        url: `${baseUrl}/calendar`
     },
 
     alternates: {

@@ -1,3 +1,43 @@
+import type { Metadata } from "next";
+
+const ossRepoURL = process.env?.OSS_REPO_LINK || "https://github.com/OWASP-STUDENT-CHAPTER/oss-programs"
+
+export const metadata: Metadata = {
+    title: "About | OSS Opportunities",
+    description:
+        "Learn more about OSS Opportunities – a platform to discover open source grants, fellowships, internships, and hackathons in one place.",
+
+    keywords: [
+        "Open Source",
+        "OSS Opportunities",
+        "Open Source Programs",
+        "Grants",
+        "Fellowships",
+        "Hackathons",
+        "Internships",
+    ],
+
+    openGraph: {
+        title: "About | OSS Opportunities",
+        description:
+            "Discover the mission behind OSS Opportunities and how we help students and developers find open source programs.",
+        url: "/about",
+        siteName: "OSS Opportunities",
+        type: "website",
+    },
+
+    twitter: {
+        card: "summary_large_image",
+        title: "About | OSS Opportunities",
+        description:
+            "Learn more about OSS Opportunities and our mission to centralize open source programs.",
+    },
+
+    alternates: {
+        canonical: "/about",
+    },
+};
+
 export default function AboutPage() {
     return (
         <main className="bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen px-6 py-16 transition-colors">
@@ -25,7 +65,7 @@ export default function AboutPage() {
                             Browse Programs
                         </a>
 
-                        <a href="https://github.com/OWASP-STUDENT-CHAPTER/oss-programs"
+                        <a href={ossRepoURL}
                             className="px-4 py-2 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg transition">
                             Contribute to Platform
                         </a>
