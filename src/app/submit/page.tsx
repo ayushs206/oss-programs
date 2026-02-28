@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLinkIcon, GithubIcon, FileCodeIcon, FilePlus } from "lucide-react";
 
+const baseUrl = process.env?.NEXT_PUBLIC_SITE_URL || "https://oss.owasptiet.com";
+const ossRepoURL = process.env?.OSS_REPO_LINK || "https://github.com/OWASP-STUDENT-CHAPTER/oss-programs"
+
 export const metadata: Metadata = {
     title: "Submit an Open Source Program",
 
@@ -13,7 +16,7 @@ export const metadata: Metadata = {
         title: "Add Your Open Source Opportunity",
         description:
             "Submit open source programs and reach developers looking to contribute.",
-        url: "https://oss.owasptiet.com/submit"
+        url: `${baseUrl}/submit`
     },
 
     alternates: {
@@ -22,8 +25,8 @@ export const metadata: Metadata = {
 };
 
 export default function SubmitPage() {
-    const repoIssuesUrl = "https://github.com/OWASP-STUDENT-CHAPTER/oss-programs/issues/new/choose";
-    const repoTreeUrl = "https://github.com/OWASP-STUDENT-CHAPTER/oss-programs/tree/main/data/programs";
+    const repoIssuesUrl = `${ossRepoURL}/issues/new/choose`;
+    const repoTreeUrl = `${ossRepoURL}/tree/main/data/programs`;
 
     return (
         <div className="container max-w-4xl mx-auto px-4 py-12 md:py-24 space-y-12">
@@ -87,7 +90,7 @@ export default function SubmitPage() {
 
             <div className="text-center pt-8 border-t">
                 <p className="text-muted-foreground text-sm">
-                    Please read our <a href="https://github.com/OWASP-STUDENT-CHAPTER/oss-programs/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">Contributing Guidelines</a> before submitting a PR.
+                    Please read our <a href={`${ossRepoURL}/blob/main/CONTRIBUTING.md`} target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">Contributing Guidelines</a> before submitting a PR.
                 </p>
             </div>
         </div>

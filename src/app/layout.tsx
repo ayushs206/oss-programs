@@ -20,6 +20,10 @@ const inter = Inter({
   variable: "--font-inter",
 })
 
+const baseUrl = process.env?.NEXT_PUBLIC_SITE_URL || "https://oss.owasptiet.com";
+const owaspTeamURL = process.env?.OWASP_TEAM_SITE || "https://www.owasptiet.com";
+const ossRepoURL = process.env?.OSS_REPO_LINK || "https://github.com/OWASP-STUDENT-CHAPTER/oss-programs"
+
 export const metadata: Metadata = {
   title: {
     default: "OWASP | OSS Opportunities",
@@ -37,12 +41,12 @@ export const metadata: Metadata = {
     "contribute to open source projects",
     "student developer programs",
   ],
-  metadataBase: new URL("https://oss.owasptiet.com/"),
+  metadataBase: new URL(baseUrl),
   openGraph: {
     title: "Explore Open Source Programs",
     description:
       "Browse active open source programs and opportunities to kickstart your journey into open source development.",
-    url: "https://oss.owasptiet.com/",
+    url: baseUrl,
     siteName: "OSS Opportunities",
     images: [
       {
@@ -95,13 +99,13 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Open Source Programs Hub",
-              url: "https://oss.owasptiet.com",
+              url: baseUrl,
               description:
                 "Discover beginner-friendly open source programs and contribution opportunities.",
               potentialAction: {
                 "@type": "SearchAction",
                 target:
-                  "https://oss.owasptiet.com/programs?search={search_term_string}",
+                  `${baseUrl}/programs?search={search_term_string}`,
                 "query-input": "required name=search_term_string",
               },
             }),
@@ -136,7 +140,7 @@ export default function RootLayout({
                   <p className="text-[10px] text-muted-foreground/60 font-medium italic">
                     Made by{" "}
                     <Link
-                      href="https://www.owasptiet.com/"
+                      href={owaspTeamURL}
                       className="hover:text-primary transition-colors"
                     >
                       OWASP TIET
@@ -154,7 +158,7 @@ export default function RootLayout({
                   About
                 </Link>
                 <Link
-                  href="https://github.com/OWASP-STUDENT-CHAPTER/oss-programs"
+                  href={ossRepoURL}
                   className="hover:text-primary transition-colors"
                 >
                   GitHub
